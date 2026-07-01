@@ -14,12 +14,16 @@ const userschema = new mongoose.Schema({
         type : String,
         require : true
     },
+    admin:{
+        type:Boolean,
+        default:false
+    },
     purchaseCourse:{
         type : mongoose.Schema.Types.ObjectId,
         ref:"course"
 
     }
 
-},{timesstamps:true})
+},{timestamps:true})
 
 export const user = mongoose.model("user" , userschema);

@@ -22,9 +22,8 @@ export const Register = async (req,res) =>{
         const newuser = await user.create({
             fullName,
             email,
-            Password:HashedPassword
+            Password:HashedPassword,
         });
-
         const token = jwt.sign({user:newuser._id} , process.env.JWT_SECRET_KEY , { expiresIn: "1d" });
 
         if(newuser.email === process.env.EMAIL){
@@ -99,7 +98,7 @@ export const getUser = async(req,res)=>{
                 message:"user not found",
             })
         }
-        return res.status(200).json(user);
+        return res.status(200).json(newuser);
     } catch (error) {
         console.log(`error in getUser function backend ${error}`);
     }
