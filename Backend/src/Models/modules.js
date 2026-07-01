@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const moduleSchema = mongoose.Schema({
+const moduleSchema = new mongoose.Schema({
     CourseId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"course",

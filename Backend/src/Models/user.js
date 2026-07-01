@@ -1,6 +1,6 @@
 import mongoose, { Types } from "mongoose";
 
-const userschema = mongoose.Schema({
+const userschema = new mongoose.Schema({
     fullName:{
         type : String,
         require:true
@@ -16,7 +16,7 @@ const userschema = mongoose.Schema({
     },
     purchaseCourse:{
         type : mongoose.Schema.Types.ObjectId,
-        ref:"Course"
+        ref:"course"
 
     }
 
