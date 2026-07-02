@@ -25,8 +25,25 @@ const courseschema = new mongoose.Schema({
     modules:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"modules",
-    }]
+    }],
+    // is embedding of that course done or not
+    isIndexed:{
+        type:Boolean,
+        default:false,
+    },
     
 },{timestamps:true})
+
+//MongoDB txt index
+courseschema.index({
+    title: "text",
+    description:"text",
+},
+{
+    weights:{
+        title:5,
+        description :1,
+    },
+})
 
 export const course = mongoose.model("course" , courseschema);
