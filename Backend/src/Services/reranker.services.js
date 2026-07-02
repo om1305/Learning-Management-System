@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios"
 //converts raw number between 0 and 1
 const sigmoid = (x) => 1 / (1 + Math.exp(-x));
 // candidates - Array of courses selected by hybrid search

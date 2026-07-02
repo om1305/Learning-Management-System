@@ -1,6 +1,6 @@
-import { getCourseCollection } from "../Config/ChromaDB";
-import { course } from "../Models/Course"
-import { buildCourseEmbeddingText, generateEmbedding } from "./embedding.service";
+import { getCourseCollection } from "../Config/ChromaDB.js";
+import { course } from "../Models/Course.js"
+import { buildCourseEmbeddingText, generateEmbedding } from "./embedding.service.js";
 
 export const indexCourse = async(Course)=>{
     try {

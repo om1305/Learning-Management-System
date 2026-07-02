@@ -1,5 +1,5 @@
 import { reciprocalRankFusion } from "../utils/reciprocalRankFusion.js";
-import { keywordSearch } from "./keywordSearch,js";
+import { keywordSearch } from "./keywordSearch.js";
 import { rerank } from "./reranker.services.js";
 import { vectorSearch } from "./VectorSearch.service.js";
 

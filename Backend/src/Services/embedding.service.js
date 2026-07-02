@@ -1,4 +1,4 @@
-import { CallHuggingFaceEmbedding } from "../Config/embeddingModel";
+import { CallHuggingFaceEmbedding } from "../Config/embeddingModel.js";
 
 const MAX_RETRIES =3;
 const RETRY_DELAY_MS =1500;

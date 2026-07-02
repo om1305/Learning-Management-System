@@ -1,6 +1,6 @@
-import { course } from "../Models/Course"
+import { course } from "../Models/Course.js"
 
-const keywordSearch = async(query , topK =5) => {
+export const keywordSearch = async(query , topK = 5) => {
     const textResults = await course.find(
         {$text : {$search : query}},
         {score : {$meta:textScore}})
@@ -10,12 +10,15 @@ const keywordSearch = async(query , topK =5) => {
             },
         })
         .limit(topK)
+        //return plain javascript objects .lean()
         .lean();
 
         if(textResults.length >= topK){
             return mapToRankedList(textResults);
         }
         //Regex 
+        // if there are less than topK results
+        // "i" is for case sensitive
         const regex = new RegExp(
             query.split(" ").filter(Boolean.join("|")),
             "i"
@@ -30,6 +33,7 @@ const keywordSearch = async(query , topK =5) => {
         .limit(topK)
         .lean();
 
+        // remove duplicates 
         const seen = new Set(
             textResults.map((doc) => doc._id.toString())
         );
@@ -43,9 +47,8 @@ const keywordSearch = async(query , topK =5) => {
         return mapToRankedList(merged);
 };
 
-const mapToRankedList = (docs) => {
+export const mapToRankedList = (docs) => {
     return docs.map((doc , index)=>({
-
         id : doc._id.toString(),
         score : doc.score !== undefined ? doc.source : 1/(index+1),
         metadata : {

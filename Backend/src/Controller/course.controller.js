@@ -1,5 +1,7 @@
 import cloudinary from "../Config/Cloudinary.js";
-import { course } from "../Models/Course.js";
+import {course}  from "../Models/Course.js";
+import { user } from "../Models/user.js";
+import { HybridSearch } from "../Services/hybridSearch.service.js";
 
 export const createCourse = async(req,res) =>{
     try{
@@ -53,7 +55,81 @@ export const getCourse = async(req,res) => {
             const allCourses = await course.find({});
             return res.status(201).json(allCourses);
         }
+        // AI FEATURE
+        const result = await HybridSearch(search.trim());
+
+        return res.status(200).json({
+            success:true,
+            search,
+            count:result.length,
+            data: result,
+        }) 
+
     }catch(error){
         console.log(`error is in getCourse ${error}`)
+    }
+}
+
+export const getSingleCourse = async(req,res) => {
+    try{
+        const courseId = req.params.id;
+        const singlecourse = await course.findById(singlecourseId).populate("userId")
+
+        if(!singlecourse){
+            return res.status(401).json({
+                message:"Course not found",
+            })
+        }
+
+        return res.status(201).json(singlecourse);
+
+    }catch(error){
+        console.log(`error is in singlecourse ${error}`);
+    }
+}
+
+//provide single course 
+//like when we click on the course we will call this single function to get the course by id
+export const getpurchaseCourse = async(req,res) => {
+    try {
+        
+        const courseId = req.param.id;
+        if(!courseId){
+            return res.status(401).json({
+                message:"no course found",
+            })
+        }
+        const purchasedcourse = await course.findById(courseId).populate("modules")
+
+        if(!purchasedcourse){
+            return res.status(401).json({
+                message:"no purchase course",
+            })
+        }
+
+        return res.status(201).json(purchasedcourse);
+
+    } catch (error) {
+        console.log(`from purchased course ${error}`)
+    }
+}
+
+//we get all purchased course
+export const getAllPurchasedCourse = async(req,res) =>{
+    try {
+        
+        const userId = req.user._id;
+
+        const User = await user.findById(userId).populate("purchaseCourse")
+
+        if(!User){
+            return res.status(401).json({
+                message:"User not found",
+            })
+        }
+
+        return res.status(201).json(User);
+    } catch (error) {
+        console.log(`error in getAllPurchasesCourse ${error}`);
     }
 }
