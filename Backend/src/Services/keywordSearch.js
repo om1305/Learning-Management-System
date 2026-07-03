@@ -3,7 +3,7 @@ import { course } from "../Models/Course.js"
 export const keywordSearch = async(query , topK = 5) => {
     const textResults = await course.find(
         {$text : {$search : query}},
-        {score : {$meta:textScore}})
+        {score : {$meta:"textScore"}})
         .sort({
             score:{
                 $meta:"textScore",
@@ -19,10 +19,17 @@ export const keywordSearch = async(query , topK = 5) => {
         //Regex 
         // if there are less than topK results
         // "i" is for case sensitive
-        const regex = new RegExp(
-            query.split(" ").filter(Boolean.join("|")),
-            "i"
-        )
+        const escapedWords = query
+    .split(" ")
+    .filter(Boolean)
+    .map(word =>
+        word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+    );
+
+const regex = new RegExp(
+    escapedWords.join("|"),
+    "i"
+);
 
         const RegexResults = await course.find({
             $or:[
@@ -50,7 +57,7 @@ export const keywordSearch = async(query , topK = 5) => {
 export const mapToRankedList = (docs) => {
     return docs.map((doc , index)=>({
         id : doc._id.toString(),
-        score : doc.score !== undefined ? doc.source : 1/(index+1),
+        score : doc.score !== undefined ? doc.score : 1/(index+1),
         metadata : {
             courseId : doc._id.toString(),
             title:doc.title,

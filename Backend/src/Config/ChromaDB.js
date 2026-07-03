@@ -5,7 +5,7 @@ export const client = new ChromaClient({
 })
 
 let cachedCollection = null;
-
+// console.log(process.env.CHROMA_URL);
 export const getCourseCollection = async() => {
     if(cachedCollection) return cachedCollection;
 

@@ -4,6 +4,12 @@ import { user } from "../Models/user.js";
 import { HybridSearch } from "../Services/hybridSearch.service.js";
 
 export const createCourse = async(req,res) =>{
+    // console.log("BODY:", req.body);
+    // console.log("FILE:", req.file);
+    console.log(process.env.CLOUD_NAME);
+console.log(process.env.CLOUD_API_KEY);
+console.log(process.env.CLOUD_API_SECRET);
+    console.log(cloudinary);
     try{
         const {title , description , amount} = req.body;
         if(!title || !description || !amount){
@@ -11,14 +17,14 @@ export const createCourse = async(req,res) =>{
                 message:"provide all the details"
             })
         }
-        const thumbnail = req.file;
+        let thumbnail = req.file;
         if(!thumbnail){
             return res.status(400).json({
                 message:"thumbnail required please provide",
                 success:false
             })
         }
-        const imageURL = "";
+        let imageURL = "";
 
         //convert buffer to base64
         const base64 = `data:${req.file.mimetype};base64,${thumbnail.buffer.toString("base64")}`;
@@ -29,7 +35,7 @@ export const createCourse = async(req,res) =>{
         })
         imageURL = uploadRes.secure_url;
 
-        const newcourse = new course.create({
+        const newcourse = await course.create({
             userId:req.user._id,
             title,
             description,
@@ -51,7 +57,7 @@ export const createCourse = async(req,res) =>{
 export const getCourse = async(req,res) => {
     try{
         const {search} = req.query;
-        if(!search || !search.trim()===""){
+        if(!search || !search.trim() === ""){
             const allCourses = await course.find({});
             return res.status(201).json(allCourses);
         }
@@ -73,7 +79,7 @@ export const getCourse = async(req,res) => {
 export const getSingleCourse = async(req,res) => {
     try{
         const courseId = req.params.id;
-        const singlecourse = await course.findById(singlecourseId).populate("userId")
+        const singlecourse = await course.findById(courseId).populate("modules")
 
         if(!singlecourse){
             return res.status(401).json({
@@ -93,7 +99,7 @@ export const getSingleCourse = async(req,res) => {
 export const getpurchaseCourse = async(req,res) => {
     try {
         
-        const courseId = req.param.id;
+        const courseId = req.params.id;
         if(!courseId){
             return res.status(401).json({
                 message:"no course found",
