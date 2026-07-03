@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// const Login = () => {
-//   return (
-//     <div>login</div>
-//   )
-// }
-
-// export default Login
-
 import { Spinner } from '@/components/ui/spinner'
 import { useLoginHook } from '@/Hooks/User.hook'
 import React from 'react'
@@ -75,7 +65,7 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="••••••••"
-                {...register('password')}
+                {...register('Password')}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               />
             </div>

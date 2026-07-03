@@ -1,5 +1,5 @@
 import { Spinner } from '@/components/ui/spinner'
-import { useRegisterHook } from '@/hooks/User.hook'
+import { useRegisterHook } from '@/Hooks/User.hook'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -45,7 +45,7 @@ const Register = () => {
               />
               <input
                 type="text"
-                placeholder="John Doe"
+                placeholder="Om Agarwal"
                 {...register('fullName')}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               />
@@ -83,8 +83,8 @@ const Register = () => {
               />
               <input
                 type="password"
-                placeholder="••••••••"
-                {...register('password')}
+                placeholder="------"
+                {...register('Password')}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
               />
             </div>

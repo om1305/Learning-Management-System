@@ -1,15 +1,19 @@
 import React from 'react'
+import { Button } from './components/ui/button'
 import MainRoutes from './Routes/MainRoutes'
-import NavBar from './components/ui/NavBar'
+import Navbar from './components/NavBar'
 import { useLocation } from 'react-router-dom'
 
-function App() {
-  const location = useLocation();
-  const hiddenRoute = ['/login','/register']
+const App = () => {
+  const location = useLocation()
+  const hiddenRoute = ['/login', '/register', '/dashboard']
+  const  shouldHideNavbar = hiddenRoute.some((route)=>location.pathname.startsWith(route))
+
   return (
     <div>
-      <NavBar/>
-      <MainRoutes/>
+    {!shouldHideNavbar && <Navbar/>}
+
+     <MainRoutes/>
     </div>
   )
 }
