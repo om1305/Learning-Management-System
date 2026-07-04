@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
 app.use('/api/user' , route);
-app.use('/api/course',courseRoute);
+app.use('/api/user/course',courseRoute);
 app.use('/api/module',moduleRoute);
 
 app.listen(process.env.PORT,()=>{

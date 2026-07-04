@@ -7,11 +7,10 @@ const CourseSection = ({ ActiveSearch }) => {
   const { data, error, isLoading } = useGetCourseHook(ActiveSearch)
   const navigate = useNavigate()
 
-  console.log(data)
   const navigateSinglecourse = (id) => {
     navigate(`/singleCourse/${id}`)
   }
-
+console.log(data)
   if (isLoading) {
     return (
       <div className='py-20 px-6'>
@@ -37,7 +36,7 @@ const CourseSection = ({ ActiveSearch }) => {
     <div className='py-20 px-6 bg-slate-50'>
       <div className='max-w-7xl mx-auto'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
-          {data?.courses?.map((item) => (
+          {data?.map((item) => (
             <div
               key={item._id}
               onClick={() => navigateSinglecourse(item._id)}
@@ -93,7 +92,7 @@ const CourseSection = ({ ActiveSearch }) => {
           ))}
         </div>
 
-        {data?.courses?.length === 0 && !isLoading && (
+        {data?.length === 0 && !isLoading && (
           <div className='text-center py-32'>
             <BookOpen className='w-24 h-24 text-slate-400 mx-auto mb-8' />
             <h2 className='text-2xl font-bold text-slate-900 mb-2'>No courses found</h2>

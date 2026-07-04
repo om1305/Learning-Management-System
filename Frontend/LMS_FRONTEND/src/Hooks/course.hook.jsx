@@ -1,4 +1,4 @@
-import { createCourseApi, getAllPurchaseCourseApi, getCourseApi, getPurchaseCourseApi, getSingleCourseApi } from '@/Api/course.api'
+import { createCourseApi, getAllPurchaseCourseApi, getCourseApi, getPurchaseCourseApi, getSingleCourseApi } from '@/API/course.api'
 import {  useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 // import { useQueryClient } from 'node_modules/@tanstack/react-query/build/legacy'
 export const useCreateCouseHook=()=>{

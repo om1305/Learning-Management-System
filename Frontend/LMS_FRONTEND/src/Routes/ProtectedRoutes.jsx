@@ -9,9 +9,7 @@ export const ProtectedRoutes =({children})=>{
     const setUser = useUserStore((state)=>state.setUser)
     const {data, isLoading, isError, error} = useGetUserHook()
 
-    
-    console.log(data)
-    useEffect(()=>{
+        useEffect(()=>{
         if(data){
         setUser(data)
     }

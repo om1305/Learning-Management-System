@@ -7,7 +7,7 @@ export const Register = async (req,res) =>{
         const {fullName , email , Password} = req.body;
 
         if(!fullName || !email || !Password){
-            return res.status(404).json({
+            return res.status(401).json({
                 message:"user details not complete",
             })
         }
