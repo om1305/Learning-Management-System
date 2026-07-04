@@ -6,6 +6,6 @@ import { getAnalyticsDataController, getDailyAnalytcController } from '../Contro
 const analyticRoute = express.Router()
 
 analyticRoute.get('/getAnalytic',protectedRoutes , adminprotectroute ,getAnalyticsDataController);
-analyticRoute.get('/getAnalytic',protectedRoutes , adminprotectroute ,getDailyAnalytcController);
+analyticRoute.get('/getDailyData',protectedRoutes , adminprotectroute ,getDailyAnalytcController);
 
 export default analyticRoute

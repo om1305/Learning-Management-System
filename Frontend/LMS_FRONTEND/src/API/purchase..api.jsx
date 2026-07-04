@@ -8,6 +8,7 @@ export const purchaseCourseApi = async(payload)=>{
             withCredentials:true
         }
     )
+    console.log(payload);
     return res.data
 }
 

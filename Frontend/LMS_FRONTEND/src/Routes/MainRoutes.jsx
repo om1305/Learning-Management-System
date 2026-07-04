@@ -9,6 +9,8 @@ import YourCourse from '@/Pages/users/YourCourse';
 import Dashboard from '@/Pages/admin/Dashboard';
 import CreateModule from '@/Pages/admin/CreateModule';
 import DashboardProducts from '@/Pages/admin/DashboardProduct';
+import DashboardAnalytics from '@/Pages/admin/DashboardAnalytics';
+import PaymenSuccess from '@/Pages/admin/Payment_Success';
 
 const MainRoutes = () => {
   return (
@@ -22,23 +24,38 @@ const MainRoutes = () => {
         </ProtectedRoutes>
     }/>
 
+<Route path='/purchase' element={
+<ProtectedRoutes>
+    <PaymenSuccess/>
+</ProtectedRoutes>
+}/>
     <Route path='/dashboard' element={
         <ProtectedRoutes>
             <Dashboard/>
         </ProtectedRoutes>
-        } ></Route>
+        } >
+
+
+        <Route index  element={
+            <ProtectedRoutes>
+            
+            <DashboardAnalytics/>
+        </ProtectedRoutes>
+        }/>
+
     
-    <Route path='/dashboard/dashboardProduct' element={
-          <ProtectedRoutes>
+    <Route path='/dashboardProduct' element={
+        <ProtectedRoutes>
             <DashboardProducts/>
         </ProtectedRoutes>
         }/>
 
-        <Route path='/dashboard/CourseModule/:id' element={
+        <Route path='CourseModule/:id' element={
             <ProtectedRoutes>
                 <CreateModule/>
             </ProtectedRoutes>
         }/>
+        </Route>
 
         <Route path='/singleCourse/:id' element={
         <ProtectedRoutes>

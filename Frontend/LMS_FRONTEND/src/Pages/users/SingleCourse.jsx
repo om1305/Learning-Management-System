@@ -11,7 +11,7 @@ const SingleCourse = () => {
 
   const purchaseHandler = (course) => {
     const product = {
-      products: {
+      product: {
         _id: course._id,
         name: course.title,
         price: course.amount,

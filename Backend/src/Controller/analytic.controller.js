@@ -11,7 +11,7 @@ export const getAnalyitcsData= async()=>{
             $group:{
                 _id:null,
                 totalEntrollments:{$sum:1},
-                totalRevenue:{$sum:'$totalAmount'}
+                totalRevenue:{$sum:'$totalamount'}
             }
         }
     ])
@@ -71,7 +71,7 @@ export const dailyEnrollmentData= async(startDate, endDate)=>{
                         $dateToString:{format:"%Y-%m-%d", date:"$createdAt"}
                     },
                     enrollments:{$sum:1},
-                    revenue:{$sum:"$totalAmount"}
+                    revenue:{$sum:"$totalamount"}
                 },
             },
             {$sort:{_id:1}}

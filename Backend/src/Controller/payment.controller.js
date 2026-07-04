@@ -5,9 +5,9 @@ import { user } from "../Models/user.js";
 export const createCheckOutSession = async(req,res)=>{
     try {
         const {product} = req.body;
-        // console.log(product);
+        console.log(product);
         if(!product){
-            return res.status(401).json({
+            return res.status(404).json({
                 message:"provide course",
                 status:false
             })
