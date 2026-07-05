@@ -1,4 +1,4 @@
-import { createModuleApi, getCommentApi, getModuleApi } from '@/Api/module.api'
+import { createModuleApi, getCommentApi, getModuleApi } from '@/API/module.api'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 export const useCreateModule=()=>{

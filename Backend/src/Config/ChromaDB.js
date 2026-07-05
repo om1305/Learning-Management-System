@@ -40,11 +40,11 @@ export const getCourseCollection = async () => {
     return cachedCollection;
 };
 
-export const pingChroma = async() =>{
-    try {
-        await client.heartbeat();
-        console.log("chromaDB heartbeat OK")
-    } catch (error) {
-        console.log(`chroma heartbeat failed ${error.message}`)
-    }
-}
+// export const pingChroma = async() =>{
+//     try {
+//         await client.heartbeat();
+//         console.log("chromaDB heartbeat OK")
+//     } catch (error) {
+//         console.log(`chroma heartbeat failed ${error.message}`)
+//     }
+// }
