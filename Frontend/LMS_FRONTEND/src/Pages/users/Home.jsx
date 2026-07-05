@@ -24,7 +24,7 @@ const Home = () => {
         setSearchInput={setSearchInput}
         handleSubmit={handleSubmit}
         onReset={resetFilter}
-        hasActiveSearch={!!ActiveSearch}  // ✅ Fixed: ActiveSearch not SearchInput
+        hasActiveSearch={!!ActiveSearch}  
       />
       <CourseSection ActiveSearch={ActiveSearch} />
     </div>

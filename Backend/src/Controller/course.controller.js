@@ -125,7 +125,7 @@ export const getAllPurchasedCourse = async(req,res) =>{
     try {
         
         const userId = req.user._id;
-
+        
         const User = await user.findById(userId).populate("purchaseCourse")
 
         if(!User){

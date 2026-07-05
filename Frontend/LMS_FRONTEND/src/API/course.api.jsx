@@ -52,7 +52,7 @@ export const getPurchaseCourseApi = async(courseId)=>{
 }
 
 export const getAllPurchaseCourseApi = async()=>{
-    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/course/getAllCoursePurchase`,
+    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/course/getAllPurchasedCourse`,
         {
             
             headers:{'Content-Type':'Application/json'},

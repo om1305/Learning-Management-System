@@ -11,6 +11,7 @@ import CreateModule from '@/Pages/admin/CreateModule';
 import DashboardProducts from '@/Pages/admin/DashboardProduct';
 import DashboardAnalytics from '@/Pages/admin/DashboardAnalytics';
 import PaymenSuccess from '@/Pages/admin/Payment_Success';
+import SinglePurchasedCourse from '@/Pages/users/SinglePurchaseCourse';
 
 const MainRoutes = () => {
   return (
@@ -21,6 +22,11 @@ const MainRoutes = () => {
         <Route path='/YourCourse' element={
         <ProtectedRoutes>
             <YourCourse/>
+        </ProtectedRoutes>
+    }/>
+     <Route path='/YourCourse/:id' element={
+        <ProtectedRoutes>
+            <SinglePurchasedCourse/>
         </ProtectedRoutes>
     }/>
 
@@ -44,7 +50,7 @@ const MainRoutes = () => {
         }/>
 
     
-    <Route path='/dashboardProduct' element={
+    <Route path='dashboardProduct' element={
         <ProtectedRoutes>
             <DashboardProducts/>
         </ProtectedRoutes>

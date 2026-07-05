@@ -59,6 +59,7 @@ export const createCheckOutSession = async(req,res)=>{
                 coursePrice:product.price,
             }
         })
+        
 
         return res.status(201).json({
             success:true,
@@ -96,7 +97,7 @@ export const checkoutSuccess = async(req,res) => {
         if(session.payment_status === "paid"){
 
             const courseId = session.metadata.courseId;
-            const userId = session.metadata.userId;
+            const userId = session.metadata.user;
 
             const newOrder = new order({
                 user:userId,

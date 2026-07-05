@@ -12,7 +12,7 @@ import {
 
 const DashboardAnalytics = () => {
   const { data } = useGetDataHook()
-
+  console.log(data);
   const { startDate, endDate } = useMemo(() => {
     const end = new Date()
     const start = new Date()

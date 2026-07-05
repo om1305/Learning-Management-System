@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const YourCourse = () => {
   const { data, isLoading } = useGetAllPurchaseCourse()
+  console.log(data);
   const navigate = useNavigate()
 
   const navigateSinglePurchaseCourse = (id) => {
@@ -46,7 +47,7 @@ const YourCourse = () => {
         </div>
 
         {/* Empty State */}
-        {!data?.purchasedCourse?.length ? (
+        {!data?.purchaseCourse?.length ? (
           <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
             <BookOpen className="w-20 h-20 text-slate-300 mx-auto mb-6" />
             <h2 className="text-2xl font-bold text-slate-900 mb-3">No courses yet</h2>
@@ -65,13 +66,13 @@ const YourCourse = () => {
             {/* Course Count */}
             <div className="mb-6 flex items-center justify-between">
               <p className="text-sm font-semibold text-slate-600">
-                {data.purchasedCourse.length} {data.purchasedCourse.length === 1 ? 'Course' : 'Courses'}
+                {data.purchaseCourse.length} {data.purchaseCourse.length === 1 ? 'Course' : 'Courses'}
               </p>
             </div>
 
             {/* Course Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {data.purchasedCourse.map((item, index) => (
+              {data.purchaseCourse.map((item, index) => (
                 <div
                   key={item._id || index}
                   onClick={() => navigateSinglePurchaseCourse(item._id)}

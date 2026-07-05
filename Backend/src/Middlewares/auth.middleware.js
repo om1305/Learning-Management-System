@@ -4,9 +4,7 @@ import {user} from "../Models/user.js";
 export const protectedRoutes = async(req,res,next) => {
     try{
         const token = req.cookies.token || req.headers.authorization?.split(" ")[1] ;
-//         const token =
-//   req.cookies.token ||
-//   req.headers.authorization?.split(" ")[1]; 
+
         if(!token){
             return res.status(401).json({
                 message:"token is missing",
@@ -37,6 +35,9 @@ export const adminprotectroute = async(req,res,next)=>{
     try {
         if(req.user && req.user.email===process.env.EMAIL){
             next();
+        }
+        else{
+            console.log("not admin email");
         }
     } catch (error) {
         console.log(`error from adminprotectedroute ${error}`);

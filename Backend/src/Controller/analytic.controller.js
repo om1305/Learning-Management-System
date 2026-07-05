@@ -30,16 +30,6 @@ export const getAnalyitcsData= async()=>{
     }
 }
 
-
-// total enrollment hain humarey pass 3
-// order 1 value-> 1
-// order 2 value-> 1
-// order 3 value-> 1
-
-// total enrollment = 3
-
-
-
 export const getAnalyticsDataController=async(req,res)=>{
     try {
         const data = await getAnalyitcsData()

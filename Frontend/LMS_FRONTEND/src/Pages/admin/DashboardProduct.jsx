@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 
 const DashboardProducts = () => {
   const { data } = useGetCourseHook()
+  console.log(data);
   const navigate = useNavigate()
   const { register, handleSubmit, reset: resetForm } = useForm()
   const { mutate, isPending } = useCreateCouseHook()
