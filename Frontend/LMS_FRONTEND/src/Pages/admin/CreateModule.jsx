@@ -5,7 +5,7 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle,DialogTrigger
 } from "@/components/ui/dialog"
 import { useForm } from 'react-hook-form'
-import { useCreateModule } from '@/hooks/module.hook'
+import { useCreateModule } from '@/Hooks/module.hook'
 import { Spinner } from '@/components/ui/spinner'
 
 const CreateModule = () => {
