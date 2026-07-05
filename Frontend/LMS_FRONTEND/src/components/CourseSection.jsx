@@ -10,7 +10,6 @@ const CourseSection = ({ ActiveSearch }) => {
   const navigateSinglecourse = (id) => {
     navigate(`/singleCourse/${id}`)
   }
-console.log(data)
   if (isLoading) {
     return (
       <div className='py-20 px-6'>

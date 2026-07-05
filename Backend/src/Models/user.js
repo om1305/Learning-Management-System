@@ -18,11 +18,13 @@ const userschema = new mongoose.Schema({
         type:Boolean,
         default:false
     },
-    purchaseCourse:[{
-        type : mongoose.Schema.Types.ObjectId,
-        ref:"course"
-
-    }]
+    purchaseCourse: {
+    type: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "course"
+    }],
+    default: []
+}
 
 },{timestamps:true})
 

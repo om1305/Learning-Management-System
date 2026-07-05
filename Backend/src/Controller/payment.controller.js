@@ -110,7 +110,7 @@ export const checkoutSuccess = async(req,res) => {
 
             await user.findByIdAndUpdate(
                 userId,
-                {$push:{purchaseCourse:courseId}}
+                {$addToSet:{purchaseCourse:courseId}}
             )
             return res.status(201).json({
                 message:"payment success",

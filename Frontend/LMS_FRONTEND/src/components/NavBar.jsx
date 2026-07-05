@@ -103,8 +103,8 @@ const Navbar = () => {
                 <span className='truncate'>{item.label}</span>
                 
                 {item.loading && (
-                  <div className='absolute right-4'>
-                    <Spinner size='sm' />
+                  <div className='absolute right-4 '>
+                    <Spinner className="w-4 h-4" />
                   </div>
                 )}
               </button>

@@ -53,14 +53,47 @@ const SingleCourse = () => {
               {data?.description || "Upgrade your skills with this professional course."}
             </p>
 
-            <div className="flex items-center gap-4 mb-8">
+            {/* <div className="flex items-center gap-4 mb-8">
               <span className="text-3xl font-bold text-emerald-600">
                 ₹{data?.amount}
               </span>
               <span className="text-sm text-gray-400 line-through">
                 ₹{Number(data?.amount) + 999}
               </span>
-            </div>
+            </div> */}
+            <div className="mb-8">
+  {/* Price */}
+  <div className="flex items-center gap-4">
+    <span className="text-3xl font-bold text-emerald-600">
+      ₹{data?.amount}
+    </span>
+
+    <span className="text-sm text-gray-400 line-through">
+      ₹{Number(data?.amount) + 999}
+    </span>
+  </div>
+
+  {/* Stripe Test Card */}
+  <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
+    <p className="text-sm font-semibold text-amber-800">
+      🧪 Stripe Test Mode
+    </p>
+
+    <p className="mt-2 text-sm text-amber-700">
+      Use this test card to complete the payment.
+    </p>
+
+    <div className="mt-3 rounded-lg border border-amber-200 bg-white px-4 py-3">
+      <p className="text-lg font-mono font-bold tracking-widest text-slate-900">
+        4242 4242 4242 4242
+      </p>
+
+      <p className="mt-2 text-xs text-slate-500">
+        Expiry: Any future date &nbsp;•&nbsp; CVC: Any 3 digits &nbsp;•&nbsp; ZIP: Any value
+      </p>
+    </div>
+  </div>
+</div>
           </div>
 
           {/* CTA */}

@@ -20,10 +20,11 @@ export const Register = async (req,res) =>{
         const HashedPassword = await bcrypt.hash(Password , 7);
 
         const newuser = await user.create({
-            fullName,
-            email,
-            Password:HashedPassword,
-        });
+    fullName,
+    email,
+    Password: HashedPassword,
+    admin: email === process.env.EMAIL
+});
         const token = jwt.sign({user:newuser._id} , process.env.JWT_SECRET_KEY , { expiresIn: "1d" });
 
         if(newuser.email === process.env.EMAIL){
@@ -103,3 +104,21 @@ export const getUser = async(req,res)=>{
         console.log(`error in getUser function backend ${error}`);
     }
 }
+
+export const logout = async (req, res) => {
+    try {
+        return res
+            .status(200)
+            .cookie("token", "", {
+                maxAge: 0,
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+            })
+            .json({
+                message: "Logout successful",
+            });
+    } catch (error) {
+        console.log(error);
+    }
+};

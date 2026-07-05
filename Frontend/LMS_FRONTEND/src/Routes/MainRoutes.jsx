@@ -12,6 +12,10 @@ import DashboardProducts from '@/Pages/admin/DashboardProduct';
 import DashboardAnalytics from '@/Pages/admin/DashboardAnalytics';
 import PaymenSuccess from '@/Pages/admin/Payment_Success';
 import SinglePurchasedCourse from '@/Pages/users/SinglePurchaseCourse';
+import Cancel from '@/Pages/admin/cancel';
+import { AdminRoute } from './AdminRoutes';
+import Profile from '@/Pages/users/ProfilePage';
+// import { Profile } from '@/Pages/users/ProfilePage';
 
 const MainRoutes = () => {
   return (
@@ -24,6 +28,13 @@ const MainRoutes = () => {
             <YourCourse/>
         </ProtectedRoutes>
     }/>
+
+    <Route path='/cancel' element={
+        <ProtectedRoutes>
+            <Cancel/>
+        </ProtectedRoutes>
+    }/>
+
      <Route path='/YourCourse/:id' element={
         <ProtectedRoutes>
             <SinglePurchasedCourse/>
@@ -35,9 +46,19 @@ const MainRoutes = () => {
     <PaymenSuccess/>
 </ProtectedRoutes>
 }/>
+
+<Route path='/profile' element={
+    <ProtectedRoutes>
+        <Profile/>
+    </ProtectedRoutes>
+}/>
+
     <Route path='/dashboard' element={
         <ProtectedRoutes>
+            <AdminRoute>
+
             <Dashboard/>
+            </AdminRoute>
         </ProtectedRoutes>
         } >
 
