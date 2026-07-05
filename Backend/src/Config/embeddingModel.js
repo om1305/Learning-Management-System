@@ -1,36 +1,27 @@
-import axios from "axios";
-const PROVIDER = process.env.EMBEDDING_PROVIDER || "huggingface";
+import { pipeline } from "@huggingface/transformers";
 
-export const CallHuggingFaceEmbedding = async(search) =>{
-    const url = `${process.env.HF_EMBEDDING_URL}/${process.env.HF_EMBEDDING_MODEL}`;
+let extractor = null;
 
-    const response = await axios.post(
-        url,
-        {
-            inputs:search , options:{wait_for_model:true}
-        },
-        {
-            headers:{
-                Authorization : `Bearer ${process.env.HUGGING_FACE_API_KEY}`,
-                "Content-Type" : "application/json",
-            },
-            timeout : 30000,
-        }
-    );
-
-    let data = response.data;
-
-    if(Array.isArray(data) && Array.isArray(data[0])){
-        const tokenCount = data.length;
-        const dims = data[0].length;
-        const pooled = new Array(dims).fill(0);
-
-        for(const tokenvector of data){
-            for(let i = 0 ; i < dims; i++){
-                pooled[i] += tokenvector[i];
-            }
-        }
-        return pooled.map((val)=> val/tokenCount);
+// Load the model only once
+const getExtractor = async () => {
+    if (!extractor) {
+        extractor = await pipeline(
+            "feature-extraction",
+            "Xenova/all-MiniLM-L6-v2"
+        );
+        console.log("Embedding model loaded.");
     }
-    return data;
-}
+
+    return extractor;
+};
+
+export const CallHuggingFaceEmbedding = async (text) => {
+    const model = await getExtractor();
+
+    const output = await model(text, {
+        pooling: "mean",
+        normalize: true,
+    });
+
+    return Array.from(output.data);
+};

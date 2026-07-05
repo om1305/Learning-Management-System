@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom'
 
 const YourCourse = () => {
   const { data, isLoading } = useGetAllPurchaseCourse()
-  console.log(data);
   const navigate = useNavigate()
-
+  
   const navigateSinglePurchaseCourse = (id) => {
     navigate(id)
   }

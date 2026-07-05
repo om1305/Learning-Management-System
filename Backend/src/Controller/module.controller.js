@@ -7,7 +7,7 @@ export const CreateModule = async(req,res) =>{
         const {courseId , title} = req.body;
         const video = req.file;
 
-        if(!title || courseId){
+        if(!title || !courseId){
             return res.status(401).json({
                 message : "provide all details",
                 status:false,

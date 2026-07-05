@@ -11,6 +11,7 @@ import { Spinner } from '@/components/ui/spinner'
 const CreateModule = () => {
   const { id } = useParams()
   const { data } = useGetSingleCourseHook(id)
+  
   const [openModule, setOpenModule] = useState(false)
 
   const { register, handleSubmit, reset } = useForm()

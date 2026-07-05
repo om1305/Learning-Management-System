@@ -19,6 +19,7 @@ export const indexCourse = async(Course)=>{
                 thumbnail: Course.thumbnail || "",
             }]
         });
+        console.log("Indexing:", Course.title);
         await course.findByIdAndUpdate(Course._id , {isIndexed:true});
         console.log(`Indexed course in chromaDB : ${Course._id}`);
 

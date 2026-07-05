@@ -8,6 +8,8 @@ import moduleRoute from "./src/Routes/module.route.js";
 import cors from "cors";
 import PaymentRoute from "./src/Routes/payment.route.js";
 import analyticRoute from "./src/Routes/analytic.route.js";
+import { getCourseCollection } from "./src/Config/ChromaDB.js";
+
 const app = express();
 
 app.use(cors({
@@ -26,7 +28,7 @@ app.use('/api/user/module',moduleRoute);
 app.use('/api/user/payment',PaymentRoute);
 app.use('/api/user/analytic',analyticRoute);
 
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT,async()=>{
     DBconnect();
     console.log("server started");
 })

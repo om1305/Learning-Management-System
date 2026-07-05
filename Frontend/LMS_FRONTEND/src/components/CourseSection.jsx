@@ -5,8 +5,7 @@ import { BookOpen, Clock, Users, Star } from 'lucide-react'
 
 const CourseSection = ({ ActiveSearch }) => {
   const { data, error, isLoading } = useGetCourseHook(ActiveSearch)
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
   const navigateSinglecourse = (id) => {
     navigate(`/singleCourse/${id}`)
   }

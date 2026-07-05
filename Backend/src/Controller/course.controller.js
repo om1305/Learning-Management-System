@@ -64,12 +64,13 @@ export const getCourse = async(req,res) => {
         // AI FEATURE
         const result = await HybridSearch(search.trim());
 
-        return res.status(200).json({
-            success:true,
-            search,
-            count:result.length,
-            data: result,
-        }) 
+        // return res.status(200).json({
+        //     success:true,
+        //     search,
+        //     count:result.length,
+        //     data: result,
+        // }) 
+        return res.status(200).json(result);
 
     }catch(error){
         console.log(`error is in getCourse ${error}`)
