@@ -13,10 +13,12 @@ import { getCourseCollection } from "./src/Config/ChromaDB.js";
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://learning-management-system-txvn.onrender.com"
+    ],
     credentials: true,
-  })
-);
+}));
 
 app.use(cookieParser())
 app.use(express.json());
@@ -30,5 +32,6 @@ app.use('/api/user/analytic',analyticRoute);
 
 app.listen(process.env.PORT,async()=>{
     DBconnect();
+    // console.log(import.meta.env.VITE_BASE_URL);
     console.log("server started");
 })
